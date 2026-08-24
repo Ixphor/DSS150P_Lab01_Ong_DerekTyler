@@ -49,9 +49,9 @@
 **Potential data-quality risk:** Network timeouts and rate limiting.  
 
 ## 5. PostgreSQL Source
-**Table Name:** support_tickets
-**Constraints/Keys:** ticket_id is the Primary Key.
-**Row Count:** 250
+**Table Name:** support_tickets  
+**Constraints/Keys:** ticket_id is the Primary Key.  
+**Row Count:** 250  
 
 **Columns, Data Types, and Nullability:**
 * ticket_id: integer (NOT NULL)

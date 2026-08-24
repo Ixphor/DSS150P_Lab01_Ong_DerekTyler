@@ -1,0 +1,53 @@
+# Chosen Source: customers.csv
+# Justification: The customers.csv file is suitable for a basic data contract because it features a flat, structured schema with straightforward data types and easily definable constraints.
+
+dataset_name: customers
+version: 1.0
+owner: "Unknown"
+source_type: file
+source_format: csv
+acquisition_method: Batch load from local file system
+expected_update_pattern: batch
+primary_key: customer_id
+
+schema:
+  - name: customer_id
+    type: string
+    nullable: false
+    description: Unique identifier for each customer.
+  - name: first_name
+    type: string
+    nullable: false
+    description: Customer's first name.
+  - name: last_name
+    type: string
+    nullable: false
+    description: Customer's last name.
+  - name: email
+    type: string
+    nullable: true
+    description: Customer's email address.
+  - name: city
+    type: string
+    nullable: true
+    description: Customer's geographic location.
+  - name: signup_date
+    type: date
+    nullable: false
+    description: The date the customer registered.
+  - name: customer_segment
+    type: string
+    nullable: false
+    description: The categorical grouping of the customer.
+
+quality_rules:
+  - customer_id must not be null
+  - customer_id must be unique after removing the fully duplicated rows
+  - customer_id must follow the format 'C' followed by numerical digits
+  - customer_segment must be a valid category (Professional, Retail, SME, or Student)
+
+freshness_expectation: "Unknown"
+duplicate_policy: deduplicate
+schema_evolution_policy: "Unknown"
+consumer: Downstream analytics teams and reporting dashboards
+notes: Profiling revealed 2 fully duplicated rows and missing values in the email (3) and city (2) columns. Deduplication must occur before enforcing the primary key constraint.
